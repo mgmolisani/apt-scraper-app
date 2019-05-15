@@ -1,11 +1,12 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
-import './App.css';
 
 const buttonStyle = {
   fontSize: `2em`,
   alignText: `center`,
   borderRadius: 0,
   WebkitAppearance: `none`,
+  border: `1px solid black`,
+  padding: `0.5em`
 };
 
 const pageButtonStyle = {...buttonStyle, width: `50%`};
@@ -82,22 +83,19 @@ function App() {
             return index >= firstListing && index < nextListing &&
               <div key={`${index}-${view}`} style={{
                 margin: `1.5em`,
-                borderRadius: `0.5em`,
                 boxShadow: `0px 0px 15px 4px rgba(0,0,0,0.15)`,
                 backgroundColor: `white`,
                 overflow: `hidden`,
               }}>
-                <div>
-                  <div style={{
-                    position: `relative`,
-                    paddingBottom: `100%`,
-                  }}>
-                    <iframe
-                      style={{border: 0, width: `100%`, height: `100%`, position: `absolute`,}}
-                      src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBwNLgxfMs5h2u3h9GjpAXNeylzCYP0K18&q=${encodeURI(location)}&zoom=13`}
-                      allowFullScreen>
-                    </iframe>
-                  </div>
+                <div style={{
+                  position: `relative`,
+                  paddingBottom: `100%`,
+                }}>
+                  <iframe
+                    style={{border: 0, width: `100%`, height: `100%`, position: `absolute`,}}
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBwNLgxfMs5h2u3h9GjpAXNeylzCYP0K18&q=${encodeURI(location)}&zoom=13`}
+                    allowFullScreen>
+                  </iframe>
                 </div>
                 <div style={{
                   padding: `1em`,
@@ -108,8 +106,9 @@ function App() {
                     fontWeight: `bold`,
                     textDecoration: `none`,
                     color: `black`,
-                    marginTop: `0.5em`,
+                    marginBottom: `0.5em`,
                   }}
+                     target={`_blank`}
                   >
                     {location}
                   </a>
@@ -118,7 +117,6 @@ function App() {
                     width: `100%`,
                     textDecoration: `none`,
                     color: `dimgrey`,
-                    marginTop: `0.5em`,
                   }}>
                   {price}
                 </span>
