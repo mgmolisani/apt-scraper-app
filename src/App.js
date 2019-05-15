@@ -85,6 +85,7 @@ function App() {
                 borderRadius: `0.5em`,
                 boxShadow: `0px 0px 15px 4px rgba(0,0,0,0.15)`,
                 backgroundColor: `white`,
+                overflow: `hidden`,
               }}>
                 <div style={{
                   position: `relative`,
@@ -97,7 +98,6 @@ function App() {
                   </iframe>
                 </div>
                 <div style={{
-                  overflow: `hidden`,
                   padding: `1em`,
                 }}>
                   <a href={url} style={{
