@@ -4,6 +4,7 @@ import './App.css';
 const buttonStyle = {
   fontSize: `2em`,
   alignText: `center`,
+  borderRadius: 0,
 };
 
 const pageButtonStyle = {...buttonStyle, width: `50%`};
@@ -79,7 +80,7 @@ function App() {
 
             return index >= firstListing && index < nextListing &&
               <div key={`${index}-${view}`} style={{
-                margin: `1em`,
+                margin: `1.5em`,
                 borderRadius: `0.5em`,
                 boxShadow: `0px 0px 15px 4px rgba(0,0,0,0.15)`,
                 backgroundColor: `white`,
@@ -96,7 +97,7 @@ function App() {
                 </div>
                 <div style={{
                   overflow: `hidden`,
-                  padding: `1.5em`,
+                  padding: `1em`,
                 }}>
                   <a href={url} style={{
                     display: `inline-block`,
