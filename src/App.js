@@ -87,15 +87,17 @@ function App() {
                 backgroundColor: `white`,
                 overflow: `hidden`,
               }}>
-                <div style={{
-                  position: `relative`,
-                  paddingBottom: `100%`,
-                }}>
-                  <iframe
-                    style={{border: 0, width: `100%`, height: `100%`, position: `absolute`,}}
-                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBwNLgxfMs5h2u3h9GjpAXNeylzCYP0K18&q=${encodeURI(location)}&zoom=13`}
-                    allowFullScreen>
-                  </iframe>
+                <div>
+                  <div style={{
+                    position: `relative`,
+                    paddingBottom: `100%`,
+                  }}>
+                    <iframe
+                      style={{border: 0, width: `100%`, height: `100%`, position: `absolute`,}}
+                      src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBwNLgxfMs5h2u3h9GjpAXNeylzCYP0K18&q=${encodeURI(location)}&zoom=13`}
+                      allowFullScreen>
+                    </iframe>
+                  </div>
                 </div>
                 <div style={{
                   padding: `1em`,
