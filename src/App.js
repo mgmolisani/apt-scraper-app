@@ -46,109 +46,103 @@ function App() {
 
   return (
     <div style={{
-      display: `fixed`,
-      height: `100vh`,
-      width: `100vw`
+      display: `flex`,
+      flexDirection: `column`,
+      height: `100%`
     }}>
       <div style={{
+        flex: `none`,
         display: `flex`,
-        flexDirection: `column`,
-        height: `100%`
       }}>
-        <div style={{
-          flex: `none`,
-          display: `flex`,
+        <h1 style={{
+          textAlign: `center`,
+          width: `100%`,
         }}>
-          <h1 style={{
-            textAlign: `center`,
-            width: `100%`,
-          }}>
-            Listings for {view === `apartments.tsv` ? `Apartments.com` : `Hotpads.com`}
-          </h1>
-        </div>
+          Listings for {view === `apartments.tsv` ? `Apartments.com` : `Hotpads.com`}
+        </h1>
+      </div>
+      <div style={{
+        overflow: `auto`,
+        flex: `auto`,
+        boxShadow: `inset 0px 0px 10px 0px rgba(0,0,0,0.15)`
+      }}
+           ref={scrollRef}>
         <div style={{
-          overflow: `auto`,
-          flex: `auto`,
-          boxShadow: `inset 0px 0px 10px 0px rgba(0,0,0,0.15)`
+          display: `grid`,
+          gridTemplateColumns: `repeat(auto-fill, minmax(320px, 1fr)`,
         }}
-             ref={scrollRef}>
-          <div style={{
-            display: `grid`,
-            gridTemplateColumns: `repeat(auto-fill, minmax(320px, 1fr)`,
-          }}
-          >
-            {data.trim().split(`\n`).map((row, index) => {
-              const values = row.split(`\t`);
+        >
+          {data.trim().split(`\n`).map((row, index) => {
+            const values = row.split(`\t`);
 
-              const location = values[0];
-              const url = values[1];
-              const price = values[2];
+            const location = values[0];
+            const url = values[1];
+            const price = values[2];
 
-              return index >= firstListing && index < nextListing &&
-                <div key={`${index}-${view}`} style={{
-                  margin: `1.5em`,
-                  borderRadius: `0.5em`,
-                  boxShadow: `0px 0px 15px 4px rgba(0,0,0,0.15)`,
-                  backgroundColor: `white`,
+            return index >= firstListing && index < nextListing &&
+              <div key={`${index}-${view}`} style={{
+                margin: `1.5em`,
+                borderRadius: `0.5em`,
+                boxShadow: `0px 0px 15px 4px rgba(0,0,0,0.15)`,
+                backgroundColor: `white`,
+              }}>
+                <div style={{
+                  position: `relative`,
+                  paddingBottom: `100%`,
                 }}>
-                  <div style={{
-                    position: `relative`,
-                    paddingBottom: `100%`,
+                  <iframe
+                    style={{border: 0, width: `100%`, height: `100%`, position: `absolute`,}}
+                    src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBwNLgxfMs5h2u3h9GjpAXNeylzCYP0K18&q=${encodeURI(location)}&zoom=13`}
+                    allowFullScreen>
+                  </iframe>
+                </div>
+                <div style={{
+                  overflow: `hidden`,
+                  padding: `1em`,
+                }}>
+                  <a href={url} style={{
+                    display: `inline-block`,
+                    width: `100%`,
+                    fontWeight: `bold`,
+                    textDecoration: `none`,
+                    color: `black`,
+                    marginTop: `0.5em`,
+                  }}
+                  >
+                    {location}
+                  </a>
+                  <span style={{
+                    display: `inline-block`,
+                    width: `100%`,
+                    textDecoration: `none`,
+                    color: `dimgrey`,
+                    marginTop: `0.5em`,
                   }}>
-                    <iframe
-                      style={{border: 0, width: `100%`, height: `100%`, position: `absolute`,}}
-                      src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBwNLgxfMs5h2u3h9GjpAXNeylzCYP0K18&q=${encodeURI(location)}&zoom=13`}
-                      allowFullScreen>
-                    </iframe>
-                  </div>
-                  <div style={{
-                    overflow: `hidden`,
-                    padding: `1em`,
-                  }}>
-                    <a href={url} style={{
-                      display: `inline-block`,
-                      width: `100%`,
-                      fontWeight: `bold`,
-                      textDecoration: `none`,
-                      color: `black`,
-                      marginTop: `0.5em`,
-                    }}
-                    >
-                      {location}
-                    </a>
-                    <span style={{
-                      display: `inline-block`,
-                      width: `100%`,
-                      textDecoration: `none`,
-                      color: `dimgrey`,
-                      marginTop: `0.5em`,
-                    }}>
                   {price}
                 </span>
-                  </div>
-                </div>;
-            })}
-          </div>
+                </div>
+              </div>;
+          })}
         </div>
-        <div style={{
-          flex: `none`,
-          display: `flex`,
-        }}>
-          <button style={viewButtonStyle} onClick={toggleView}>
-            {view === `apartments.tsv` ? `Show Hotpads.com` : `Show Apartments.com`}
-          </button>
-        </div>
-        <div style={{
-          flex: `none`,
-          display: `flex`,
-        }}>
-          <button style={pageButtonStyle} onClick={deccrementPage} disabled={firstListing === 0}>
-            Previous
-          </button>
-          <button style={pageButtonStyle} onClick={incrementPage} disabled={nextListing >= totalApts}>
-            Next
-          </button>
-        </div>
+      </div>
+      <div style={{
+        flex: `none`,
+        display: `flex`,
+      }}>
+        <button style={viewButtonStyle} onClick={toggleView}>
+          {view === `apartments.tsv` ? `Show Hotpads.com` : `Show Apartments.com`}
+        </button>
+      </div>
+      <div style={{
+        flex: `none`,
+        display: `flex`,
+      }}>
+        <button style={pageButtonStyle} onClick={deccrementPage} disabled={firstListing === 0}>
+          Previous
+        </button>
+        <button style={pageButtonStyle} onClick={incrementPage} disabled={nextListing >= totalApts}>
+          Next
+        </button>
       </div>
     </div>
   );
