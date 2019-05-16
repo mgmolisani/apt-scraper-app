@@ -59,7 +59,7 @@ function App() {
           textAlign: `center`,
           width: `100%`,
         }}>
-          Listings for {view === `apartments.tsv` ? `Apartments.com` : `Hotpads.com`}
+          Listings for {view === `apartments.tsv` ? `Apartments.com` : `Hotpads.com`} - {page}
         </h1>
       </div>
       <div style={{
